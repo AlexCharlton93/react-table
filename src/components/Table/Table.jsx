@@ -1,5 +1,5 @@
-import React from "react";
-import { useTable, useSortBy } from "react-table";
+import React from 'react';
+import { useTable, useSortBy } from 'react-table';
 
 export default function Table({ columns, data }) {
   const {
@@ -23,17 +23,17 @@ export default function Table({ columns, data }) {
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
               <th
-              {...column.getHeaderProps(column.getSortByToggleProps())}
-              className={
-                column.isSorted
-                  ? column.isSortedDesc
-                    ? "sort-desc"
-                    : "sort-asc"
-                  : ""
-              }
-            >
-              {column.render("Header")}
-            </th>
+                {...column.getHeaderProps(column.getSortByToggleProps())}
+                className={
+                  column.isSorted
+                    ? column.isSortedDesc
+                      ? 'sort-desc'
+                      : 'sort-asc'
+                    : ''
+                }
+              >
+                {column.render('Header')}
+              </th>
             ))}
           </tr>
         ))}
@@ -44,7 +44,7 @@ export default function Table({ columns, data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
               })}
             </tr>
           );
