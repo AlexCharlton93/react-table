@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTable, useSortBy } from 'react-table';
+import PropTypes from 'prop-types';
 
-export default function Table({ columns, data }) {
+const Table = ({ columns, data }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -20,7 +21,7 @@ export default function Table({ columns, data }) {
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr key={headerGroup.getHeaderGroupProps()} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
               <th
                 {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -39,12 +40,12 @@ export default function Table({ columns, data }) {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
+        {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+            <tr key={row.id} {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+                return <td key={cell.id} {...cell.getCellProps()}>{cell.render('Cell')}</td>;
               })}
             </tr>
           );
@@ -53,3 +54,10 @@ export default function Table({ columns, data }) {
     </table>
   );
 }
+
+Table.propTypes = {
+  columns: PropTypes.instanceOf(Array).isRequired,
+  data: PropTypes.instanceOf(Array).isRequired,
+};
+
+export default Table;

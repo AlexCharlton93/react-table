@@ -2,10 +2,17 @@ import React, { useMemo, useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from '../components/Table';
 import Badge from '../components/Badge';
-import '../App.css';
+import '../App.scss';
 
 const Shows = () => {
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result = await axios('https://api.tvmaze.com/search/shows?q=snow');
+      setData(result.data);
+    })();
+  }, []);
 
   const columns = useMemo(
     () => [
@@ -57,13 +64,6 @@ const Shows = () => {
     ],
     []
   );
-
-  useEffect(() => {
-    (async () => {
-      const result = await axios('https://api.tvmaze.com/search/shows?q=snow');
-      setData(result.data);
-    })();
-  }, []);
 
   return (
     <div className="Shows">
