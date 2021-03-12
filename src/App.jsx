@@ -1,14 +1,14 @@
 import React, { useMemo, useState, useEffect } from "react";
 import axios from 'axios';
-import Table from "./Table";
+import Table from "./components/Table";
 import "./App.css";
 
 const Genres = ({ values }) => {
   return (
     <>
-      {values.map((genre, idx) => {
+      {values.map((genre) => {
         return (
-          <span key={idx} className="badge">
+          <span className="badge">
             {genre}
           </span>
         );
