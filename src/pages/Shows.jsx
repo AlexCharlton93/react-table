@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useMemo, useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from '../components/Table';
@@ -37,13 +38,13 @@ const Shows = () => {
             accessor: 'show.language'
           },
           {
+            // eslint-disable-next-line react/display-name
+            Cell: ({ cell: { value } }) => <Badge values={value} />,
             Header: 'Genre(s)',
             accessor: 'show.genres',
-            Cell: ({ cell: { value } }) => <Badge values={value} />
           },
           {
-            Header: 'Runtime',
-            accessor: 'show.runtime',
+            // eslint-disable-next-line react/display-name
             Cell: ({ cell: { value } }) => {
               const hour = Math.floor(value / 60);
               const min = Math.floor(value % 60);
@@ -53,7 +54,9 @@ const Shows = () => {
                   {min > 0 ? `${min} min${min > 1 ? 's' : ''}` : ''}
                 </>
               );
-            }
+            },
+            Header: 'Runtime',
+            accessor: 'show.runtime',
           },
           {
             Header: 'Status',

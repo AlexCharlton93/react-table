@@ -24,13 +24,11 @@ const Table = ({ columns, data }) => {
           <tr key={headerGroup.getHeaderGroupProps()} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
               <th
+                key={column.id}
                 {...column.getHeaderProps(column.getSortByToggleProps())}
                 className={
                   column.isSorted
-                    ? column.isSortedDesc
-                      ? 'sort-desc'
-                      : 'sort-asc'
-                    : ''
+                    ? 'sort-asc' : 'sort-desc'
                 }
               >
                 {column.render('Header')}
